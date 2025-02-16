@@ -4,6 +4,7 @@ import DFS
 inputFileName = "../Input/Input-01.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
+''' Function to read input files'''
 def readFile():
     with open(inputFileName, 'r') as file: 
         line = file.readlines()
@@ -25,7 +26,9 @@ def readFile():
 
 
 def main():
+    ''' Create two lists storing stones's weigth and the map (array) ''' 
     weightStone, array = readFile()
+    
     print(weightStone)
     print(array)
     
