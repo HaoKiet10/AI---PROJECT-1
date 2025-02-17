@@ -56,4 +56,3 @@ def starting_state(map):
     # return starting state and switches position
     return state, switches
 
-
