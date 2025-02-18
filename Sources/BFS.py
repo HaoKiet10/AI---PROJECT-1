@@ -58,7 +58,7 @@ def BFS(filePath, board, weightStone):
             newState = spf.state(newBoard, nowState.board, nowState.path + nameDirection, nowState.weightPush + weight, node)
             
             # use to debug
-            #spf.printBoard(newSate.board)
+            spf.printBoard(newState.board)
             
             # end the function
             if spf.checkWinner(newBoard, switchPos):

@@ -13,8 +13,6 @@ class state:
         self.steps = len(path)
         
     
-        
-
     
 def findPosition(board, weightStone):
     startPos = None
@@ -112,7 +110,7 @@ def move(board, stonePos, nextPos, curPos, switchPos):
             stonePos[(x, y)] = stonePos.pop((nextPos[0], nextPos[1]))
         
         if newBoard[x][y] == '.':
-            newBoard[x][y] = '$'
+            newBoard[x][y] = '*'
         else: 
             newBoard[x][y] = '$'
         
@@ -121,7 +119,9 @@ def move(board, stonePos, nextPos, curPos, switchPos):
     newBoard[curPos[0]][curPos[1]] = ' '
     
     for p in switchPos:
-        if newBoard[p[0]][p[1]] == ' ':
+        if newBoard[p[0]][p[1]] == '*':
+            continue
+        elif newBoard[p[0]][p[1]] == ' ':
             newBoard[p[0]][p[1]] = '.'  
     
     
@@ -160,9 +160,9 @@ def checkWinner(board, switchPos):
             print(f"Invalid switch position: {i}")
             continue 
         
-        if board[i[0]][i[1]] == '$':
-            return True
-    return False
+        if board[i[0]][i[1]] != '*':
+            return False 
+    return True
 
 
 def moveDirection(board, nextPos, curPos):
@@ -184,7 +184,7 @@ def moveDirection(board, nextPos, curPos):
 
 def checkWeight(board, stonePos, pos):
     if board[pos[0]][pos[1]] == '$':
-        print("Position stone: " + str(pos[0]) + " " + str(pos[1]))
+        # print("Position stone: " + str(pos[0]) + " " + str(pos[1]))
         if (pos[0], pos[1]) in stonePos:
             return stonePos[(pos[0], pos[1])]
         
