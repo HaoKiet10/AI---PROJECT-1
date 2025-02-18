@@ -1,5 +1,5 @@
-import DFS
-
+import supportFile as spf
+import BFS
 
 inputFileName = "../Input/Input-01.txt"
 outputFileName = inputFileName.replace("Input", "Output")
@@ -26,9 +26,7 @@ def readFile():
 
 def main():
     weightStone, array = readFile()
-    print(weightStone)
-    print(array)
-    
+    bfsSate = BFS.BFS(outputFileName, array, weightStone)
     
 if __name__ == "__main__":
     main()
