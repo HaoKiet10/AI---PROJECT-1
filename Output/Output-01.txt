@@ -1,3 +1,6 @@
 BFS
-Steps: 9 , Weight: 8 , Node: 765 , Time (ms): 337 , Memory (MB): 0.499
+Steps: 9 , Weight: 8 , Node: 765 , Time (ms): 489 , Memory (MB): 0.501
 Path: uuRRRRurD
+UCS
+Steps: 35 , Weight: 0 , Node: 1382 , Time (ms): 10623 , Memory (MB): 2.208
+Path: uuRllldrrrrrrrrrullulllDlllldrrrRRR

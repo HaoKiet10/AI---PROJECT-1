@@ -1,5 +1,6 @@
 import supportFile as spf
 import BFS
+import UCS
 
 inputFileName = "../Input/Input-01.txt"
 outputFileName = inputFileName.replace("Input", "Output")
@@ -26,7 +27,8 @@ def readFile():
 
 def main():
     weightStone, array = readFile()
-    bfsSate = BFS.BFS(outputFileName, array, weightStone)
+    bfsState = BFS.BFS(outputFileName, array, weightStone)
+    ucs = UCS.UCS(array, weightStone, outputFileName)
     
 if __name__ == "__main__":
     main()
