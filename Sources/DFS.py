@@ -43,6 +43,7 @@ def DFS(filePath, board, weightStone):
             # create the new board when move
             newBoard = spf.move(nowState.board, stonePos ,nextPos, curPos, switchPos)
             
+            
             # update node visited
             node += 1
             
@@ -50,6 +51,7 @@ def DFS(filePath, board, weightStone):
             if spf.checkSameBoard(newBoard, listState):
                 continue
             
+
             # get the path:
             nameDirection = spf.moveDirection(nowState.board, nextPos, curPos)  
             
