@@ -8,7 +8,7 @@ sys.path.append("../UI/Source/")
 import home as ui
 
 
-inputFileName = "../Input/Input-01.txt"
+inputFileName = "../Input/Input-02.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
 
