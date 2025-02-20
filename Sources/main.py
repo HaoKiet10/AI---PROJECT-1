@@ -1,8 +1,17 @@
 import supportFile as spf
 import BFS
+import pygame
+import tkinter as tk
+
+import sys
+sys.path.append("../UI/Source/")
+import home as ui
+
 
 inputFileName = "../Input/Input-01.txt"
 outputFileName = inputFileName.replace("Input", "Output")
+
+
 
 def readFile():
     with open(inputFileName, 'r') as file: 
@@ -25,8 +34,13 @@ def readFile():
 
 
 def main():
-    weightStone, array = readFile()
-    bfsSate = BFS.BFS(outputFileName, array, weightStone)
+    weightStone, board = readFile()
+    bfsSate = BFS.BFS(outputFileName, board, weightStone)
+    root = tk.Tk()
+    app = Sokoban(root)
+    root.mainloop() 
+    ui.run(board)
+    
     
 if __name__ == "__main__":
     main()
