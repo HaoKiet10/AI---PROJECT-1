@@ -10,8 +10,14 @@ class state:
         self.weightPush = weight    # weight pushed
         self.node = node
         self.path = path
-        self.steps = len(path)
-        
+        if path == None:
+            self.steps = 0
+        else:
+            self.steps = len(path)
+
+
+    def __lt__ (self, another):
+        return self.weightPush < another.weightPush
     
     
 def findPosition(board, weightStone):

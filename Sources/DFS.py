@@ -2,15 +2,13 @@ import supportFile as spf
 import time
 import tracemalloc
 
+def output(filePath, newState, time, memory):
+    with open(filePath, "w") as f:
+        f.write("DFS\n")
+        f.write("Steps: " + str(newState.steps) + " , Weight: " + str(newState.weightPush) + " , Node: " + str(newState.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
+        f.write("Path: " + newState.path + "\n")
 
-def output(filePath, newSate, time, memory):
-    with open(filePath, "a") as f:
-        f.write("BFS\n")
-        f.write("Steps: " + str(newSate.steps) + " , Weight: " + str(newSate.weightPush) + " , Node: " + str(newSate.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
-        f.write("Path: " + newSate.path + "\n")
-    
-
-def BFS(filePath, board, weightStone):
+def DFS(filePath, board, weightStone):
     startPos, stonePos, switchPos = spf.findPosition(board, weightStone)
     
     # use to debug weight
@@ -24,14 +22,14 @@ def BFS(filePath, board, weightStone):
     
     # set the first state
     startState = spf.state(board, None, "", 0, 0)
+    stack = [startState]
     listState = [startState]
-    listVisited = [startState]
     node = 0
     weight = 0
     
-    # starting BFS:
-    while len(listVisited) != 0:
-        nowState = listVisited.pop(0)
+    # starting DFS:
+    while len(stack) != 0:
+        nowState = stack.pop()
         curPos = spf.findPosAres(nowState.board)
         
         # direction of next step
@@ -58,7 +56,7 @@ def BFS(filePath, board, weightStone):
             newState = spf.state(newBoard, nowState.board, nowState.path + nameDirection, nowState.weightPush + weight, node)
             
             # use to debug
-            # spf.printBoard(newState.board)
+            spf.printBoard(newState.board)
             
             # end the function
             if spf.checkWinner(newBoard, switchPos):
@@ -69,7 +67,6 @@ def BFS(filePath, board, weightStone):
                 tracemalloc.stop()
                 memoryUsed = round((peakMemory / (1024 * 1024)), 3)
                 
-                
                 output(filePath, newState, timeUsed, memoryUsed)
                 print("------------------------")
                 print("Founded the path: ")
@@ -78,12 +75,11 @@ def BFS(filePath, board, weightStone):
                 return newState
             
             listState.append(newState)
-            listVisited.append(newState)
+            stack.append(newState)
             
             endTime = time.time()
             if endTime - startTime > spf.TIMEOUT:
                 return []
-            
             
     print("Not found")
     return []
