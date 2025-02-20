@@ -1,15 +1,16 @@
 from copy import deepcopy
 
-TIMEOUT = 3000
+TIMEOUT = 10000
 
 
 class state:
-    def __init__(self, board, preState, path, weight, node):
+    def __init__(self, board, preState, path, weight, node, stonePos):
         self.board = board
         self.preState = preState
         self.weightPush = weight    # weight pushed
         self.node = node
         self.path = path
+        self.stonePos = stonePos
         if path == None:
             self.steps = 0
         else:
@@ -105,6 +106,7 @@ def copyBoard(board):
 
 def move(board, stonePos, nextPos, curPos, switchPos):
     newBoard = copyBoard(board)
+    newStonePos = deepcopy(stonePos)
     
     if(newBoard[nextPos[0]][nextPos[1]] == '$'):
         x = 2 * nextPos[0] - curPos[0]
@@ -112,8 +114,8 @@ def move(board, stonePos, nextPos, curPos, switchPos):
         
         # print("x and y: " + str(x) + str(y))
         # updated the position of Stone
-        if (nextPos[0], nextPos[1]) in stonePos:
-            stonePos[(x, y)] = stonePos.pop((nextPos[0], nextPos[1]))
+        if (nextPos[0], nextPos[1]) in newStonePos:
+            newStonePos[(x, y)] = newStonePos.pop((nextPos[0], nextPos[1]))
         
         if newBoard[x][y] == '.':
             newBoard[x][y] = '*'
@@ -131,7 +133,7 @@ def move(board, stonePos, nextPos, curPos, switchPos):
             newBoard[p[0]][p[1]] = '.'  
     
     
-    return newBoard
+    return newBoard, newStonePos
     
 
 def compareBoard(board1, board2):
@@ -189,7 +191,7 @@ def moveDirection(board, nextPos, curPos):
     return moveDirection
 
 def checkWeight(board, stonePos, pos):
-    if board[pos[0]][pos[1]] == '$':
+    if board[pos[0]][pos[1]] == '$' or board[pos[0]][pos[1]] == '.':
         # print("Position stone: " + str(pos[0]) + " " + str(pos[1]))
         if (pos[0], pos[1]) in stonePos:
             return stonePos[(pos[0], pos[1])]
@@ -197,13 +199,16 @@ def checkWeight(board, stonePos, pos):
     return 0
 
 
-def printBoard(board):
+def printBoard(board, stonePos):
     
     with open('output.txt', 'a') as f: 
         f.write("-----------------\n")
         for row in board:
             f.write("\t".join(map(str, row)) + "\n")
-            
+        f.write(str(stonePos) + "\n")  
         
 
+        
+        
+        
         

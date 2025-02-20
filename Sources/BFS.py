@@ -1,6 +1,7 @@
 import supportFile as spf
 import time
 import tracemalloc
+import copy
 
 
 def output(filePath, newSate, time, memory):
@@ -16,6 +17,7 @@ def BFS(filePath, board, weightStone):
     # use to debug weight
     # print("dai: " + str(len(board)) + " Rong: " + str(len(board[0])))
     # print("Position stone: " + str(stonePos))
+    print(stonePos)
     print(switchPos)
     
     # calculate time and memory
@@ -23,7 +25,8 @@ def BFS(filePath, board, weightStone):
     tracemalloc.start()
     
     # set the first state
-    startState = spf.state(board, None, "", 0, 0)
+    
+    startState = spf.state(board, None, "", 0, 0, stonePos)
     listState = [startState]
     listVisited = [startState]
     node = 0
@@ -40,11 +43,15 @@ def BFS(filePath, board, weightStone):
         for nextPos in directions:
             
             # get weight stone 
-            weight = spf.checkWeight(nowState.board, stonePos, nextPos)
-            
+            weight = spf.checkWeight(nowState.board, nowState.stonePos, nextPos)
+            print(nowState.stonePos)
+        
+        
             # create the new board when move
-            newBoard = spf.move(nowState.board, stonePos ,nextPos, curPos, switchPos)
-            
+    
+            newBoard, newStonePos = spf.move(nowState.board, nowState.stonePos, nextPos, curPos, switchPos)
+            print("new pos: " + str(newStonePos))
+            # print(nowState.stonePos)
             # update node visited
             node += 1
             
@@ -55,10 +62,10 @@ def BFS(filePath, board, weightStone):
             # get the path:
             nameDirection = spf.moveDirection(nowState.board, nextPos, curPos)  
             
-            newState = spf.state(newBoard, nowState.board, nowState.path + nameDirection, nowState.weightPush + weight, node)
+            newState = spf.state(newBoard, nowState.board, nowState.path + nameDirection, nowState.weightPush + weight, node, newStonePos)
             
             # use to debug
-            # spf.printBoard(newState.board)
+            spf.printBoard(newState.board, newState.stonePos)
             
             # end the function
             if spf.checkWinner(newBoard, switchPos):
@@ -68,7 +75,8 @@ def BFS(filePath, board, weightStone):
                 currentMemory, peakMemory = tracemalloc.get_traced_memory() 
                 tracemalloc.stop()
                 memoryUsed = round((peakMemory / (1024 * 1024)), 3)
-                
+            
+                # newState.weightPush += weight
                 
                 output(filePath, newState, timeUsed, memoryUsed)
                 print("------------------------")
@@ -82,6 +90,7 @@ def BFS(filePath, board, weightStone):
             
             endTime = time.time()
             if endTime - startTime > spf.TIMEOUT:
+                print("Not enought time")
                 return []
             
             
