@@ -10,6 +10,16 @@ from queue import PriorityQueue
 import supportFile as spf
 import time
 
+# function to check if a state is already reached and saved inside an
+# array or not. If yes return the index, if not return -1.
+def checkExist(newBoard, newStonePos, arr : list[spf.state]):
+	count = 0
+	for state in arr:
+		if newBoard == state.board and newStonePos == state.stonePos:
+			return count
+		count += 1	
+	return -1	
+
 def AStar(board, weightStone, filePath):
 	# initialize open (priority queue), closed (list) and tentative
 	open = PriorityQueue()
@@ -17,19 +27,46 @@ def AStar(board, weightStone, filePath):
 	closed : list[spf.state] = []
 
 	# push the starting state into open
-	curPos, stoneList, switchPos = spf.findPosition(board, weightStone)
-	startState = spf.state(board, None, None, 0, 0, stoneList)
+	curPos, stonePos, switchPos = spf.findPosition(board, weightStone)
+	startState = spf.state(board, None, None, 0, 0, stonePos)
 	open.put(startState)
 
 	# while loop to implement A*
-	# while not open.empty():
-	# 	curState : spf.state = open.get()
-	# 	curPos = spf.findPosAres(curState.board)
-	# 	nextDir = spf.nextDirections(curState.board, curState.stonePos, curPos, curPos, )
-	# 	for dir in nextDir:
-	# 		# create new map state with the found directions
-	# 		spf.move(curState.board, curState.stonePos, nextDir)
-	# 		# check if current direction have existed inside closed. 
+	while not open.empty():
+		curState : spf.state = open.get()
+		curPos = spf.findPosAres(curState.board)
+		# find possible moves
+		nextDir = spf.nextDirections(curState.board, curState.stonePos)
+
+		for dir in nextDir:
+			# create new map state with the found directions
+			newBoard, newStonePos = spf.move(curState.board, curState.stonePos, dir, curPos, switchPos)
+
+			# check if the new state have existed inside closed. 
+			if checkExist(newBoard, newStonePos, closed) != -1:
+				continue
+			# check if current path to new direction have lower cost than
+			# already known paths in tentative.
+			index = checkExist(newBoard, newStonePos, tentative)
+
+			newCost = 1 + spf.checkWeight(curState.board, curState.stonePos, dir)
+			newTotalCost = curState.weightPush + curState.steps + newCost
+
+			newPath = curState.path + spf.moveDirection(curState.board, dir, curPos)
+			newState = spf.state(newBoard, curState, newPath, newTotalCost, curState.node, newStonePos)
+			# case if this state is completely new
+			if index == -1:
+				newState.node += 1
+				tentative.append(newState)
+				open.put(newState)
+			# case if this state existed in tentative but can be improved
+			elif tentative[index].steps + tentative[index].weightPush > newTotalCost:
+				tentative[index] = newState
+				open.put(newState)
+
+	
+
+				
 			
 
 	
