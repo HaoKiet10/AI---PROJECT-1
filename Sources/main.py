@@ -2,6 +2,7 @@ import supportFile as spf
 import BFS
 import DFS
 import UCS
+import AStar
 
 inputFileName = "Input/Input-01.txt"
 outputFileName = inputFileName.replace("Input", "Output")
@@ -31,6 +32,7 @@ def main():
     # bfsState = BFS.BFS(outputFileName, array, weightStone)
     ucs = UCS.UCS(array, weightStone, outputFileName)
     # dfs = DFS.DFS(outputFileName, array, weightStone)
+    aStar = AStar.AStar(array, weightStone, outputFileName)
     
 if __name__ == "__main__":
     main()
