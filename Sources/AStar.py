@@ -9,6 +9,7 @@
 from queue import PriorityQueue
 import supportFile as spf
 import time
+import tracemalloc
 import pprint
 
 # function to check if a state is already reached and saved inside an
@@ -38,6 +39,10 @@ def tracePath(curState : spf.state):
 	print(curState.weightPush)
 
 def AStar(board, weightStone, filePath):
+	# time and memory trackers
+	startTime = time.time()
+	tracemalloc.start()
+
 	# initialize open (priority queue), closed (list) and tentative
 	open = PriorityQueue()
 	tentative : list[spf.state] = []
@@ -54,12 +59,18 @@ def AStar(board, weightStone, filePath):
 		curPos = spf.findPosAres(curState.board)
 
 		# check if current state is goal state
-		if spf.checkWinner(newBoard, newStonePos):
-			tracePath()
-			break
+		if spf.checkWinner(curState.board, switchPos):
+			elapsedTime = (time.time() - startTime) * 1000
+
+			curMemory, peakMemory = tracemalloc.get_traced_memory()
+			peakMemory = peakMemory / (1024 * 1024)
+			tracemalloc.stop()
+
+			output(curState, elapsedTime, peakMemory, filePath)
+			return curState
 
 		# find possible moves
-		nextDir = spf.nextDirections(curState.board, curState.stonePos)
+		nextDir = spf.nextDirections(curState.board, curPos)
 
 		for dir in nextDir:
 			# create new map state with the found directions
