@@ -1,2 +1,7 @@
 test
 .txt
+Sources/main.py
+/Sources
+/Input
+*.txt
+*.pyc
