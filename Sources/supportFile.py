@@ -198,7 +198,7 @@ def moveDirection(board, nextPos, curPos):
     return moveDirection
 
 def checkWeight(board, stonePos, pos):
-    if board[pos[0]][pos[1]] == '$' or board[pos[0]][pos[1]] == '.':
+    if board[pos[0]][pos[1]] == '$' or board[pos[0]][pos[1]] == '*':
         # print("Position stone: " + str(pos[0]) + " " + str(pos[1]))
         if (pos[0], pos[1]) in stonePos:
             return stonePos[(pos[0], pos[1])]
