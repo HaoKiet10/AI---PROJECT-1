@@ -1,3 +1,6 @@
 UCS
-Steps: 6 , Weight: 22 , Node: 7 , Time (ms): 4 , Memory (MB): 0.036
+Steps: 6 , Weight: 22 , Node: 7 , Time (ms): 3 , Memory (MB): 0.039
+Path: uRRRRU
+A-Star
+Steps: 6, Weight: 22, Node: 6, Time (ms): 18141.616344451904, Memory (MB): 6.702247619628906
 Path: uRRRRU

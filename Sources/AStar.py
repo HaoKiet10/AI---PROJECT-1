@@ -10,21 +10,23 @@ from queue import PriorityQueue
 import supportFile as spf
 import time
 import tracemalloc
-import pprint
+from pprint import pprint
 
 # function to check if a state is already reached and saved inside an
 # array or not. If yes return the index, if not return -1.
 def checkExist(newBoard, newStonePos, arr : list[spf.state]):
 	count = 0
+	# print("Length arr: ", len(arr))
 	for state in arr:
 		if newBoard == state.board and newStonePos == state.stonePos:
 			return count
+		# print(count)
 		count += 1	
 	return -1	
 
 # function to output results to an specified output file. Values include number of steps, weight pushed, number of nodes (states) visited, time, memory cost and the shortest path. 
 def output(finalState: spf.state, time, memory, filePath):
-	tracePath(spf.state)
+	tracePath(finalState)
 	with open(filePath, "a") as file:
 		file.write("A-Star\n")
 		file.write("Steps: " + str(finalState.steps) + ", Weight: " + str(finalState.weightPush) + ", Node: " + str(finalState.node) + ", Time (ms): " + str(time) + ", Memory (MB): " + str(memory) + "\n")
@@ -34,6 +36,7 @@ def output(finalState: spf.state, time, memory, filePath):
 def tracePath(curState : spf.state):
 	if curState.preState == None:
 		return
+	tracePath(curState.preState)
 	pprint(curState.board)
 	print(curState.stonePos)
 	print(curState.weightPush)
@@ -50,13 +53,17 @@ def AStar(board, weightStone, filePath):
 
 	# push the starting state into open
 	curPos, stonePos, switchPos = spf.findPosition(board, weightStone)
-	startState = spf.state(board, None, None, 0, 0, stonePos)
+	startState = spf.state(board, None, "", 0, 0, stonePos)
 	open.put(startState)
 
 	# while loop to implement A*
 	while not open.empty():
 		curState : spf.state = open.get()
 		curPos = spf.findPosAres(curState.board)
+
+		if checkExist(curState.board, curState.stonePos, closed) != -1:
+			continue
+		closed.append(curState)
 
 		# check if current state is goal state
 		if spf.checkWinner(curState.board, switchPos):
@@ -84,11 +91,13 @@ def AStar(board, weightStone, filePath):
 			# already known paths in tentative.
 			index = checkExist(newBoard, newStonePos, tentative)
 
+			# Calculate the new total cost and the new amount of weight pushed separately.
 			newCost = 1 + spf.checkWeight(curState.board, curState.stonePos, dir)
+			newWeightPushed = curState.weightPush + newCost - 1
 			newTotalCost = curState.weightPush + curState.steps + newCost
 
 			newPath = curState.path + spf.moveDirection(curState.board, dir, curPos)
-			newState = spf.state(newBoard, curState, newPath, newTotalCost, curState.node, newStonePos)
+			newState = spf.state(newBoard, curState, newPath, newWeightPushed, curState.node, newStonePos)
 			# case if this state is completely new
 			if index == -1:
 				newState.node += 1

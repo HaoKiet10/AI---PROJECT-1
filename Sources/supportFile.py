@@ -18,7 +18,7 @@ class state:
 
 
     def __lt__ (self, another):
-        return self.weightPush < another.weightPush
+        return self.weightPush + self.steps < another.weightPush + another.steps
     
     
 def findPosition(board, weightStone):
