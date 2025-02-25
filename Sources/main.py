@@ -4,7 +4,7 @@ import DFS
 import UCS
 import AStar
 
-inputFileName = "Input/Input-02.txt"
+inputFileName = "Input/Input-01.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
 def readFile():

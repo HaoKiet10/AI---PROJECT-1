@@ -107,8 +107,8 @@ def AStar(board, weightStone, filePath):
 			elif tentative[index].steps + tentative[index].weightPush > newTotalCost:
 				tentative[index] = newState
 				open.put(newState)
-		print("Not found") 
-		return None
+	print("Not found") 
+	return None
 
 	
 
