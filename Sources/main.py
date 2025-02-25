@@ -11,7 +11,7 @@ import DFS
 # import home as ui
 
 
-inputFileName = "../Input/Input-03.txt"
+inputFileName = "Input/Input-02.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
 
@@ -38,7 +38,7 @@ def readFile():
 
 def main():
     weightStone, board = readFile()
-    bfsState = BFS.BFS(outputFileName, board, weightStone)
+    # bfsState = BFS.BFS(outputFileName, board, weightStone)
     ucs = UCS.UCS(board, weightStone, outputFileName)
     # root = tk.Tk()
     # app = Sokoban(root)
