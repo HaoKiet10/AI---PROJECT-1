@@ -4,11 +4,19 @@ import tracemalloc
 import copy
 
 
-def output(filePath, newSate, time, memory):
-    with open(filePath, "a") as f:
+def output(filePath, newState, time, memory):
+    #  output 
+    with open(filePath, "w") as f:
         f.write("BFS\n")
-        f.write("Steps: " + str(newSate.steps) + " , Weight: " + str(newSate.weightPush) + " , Node: " + str(newSate.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
-        f.write("Path: " + newSate.path + "\n")
+        f.write("Steps: " + str(newState.steps) + " , Weight: " + str(newState.weightPush) + " , Node: " + str(newState.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
+        f.write("Path: " + newState.path + "\n")
+    
+    newName = "-" + filePath.split("-")[-1]
+    filePathData = "../UI/Data/Level" + newName
+    
+    with open(filePathData, "w") as f:
+        f.write(newState.path + "\n")
+        f.write(str(newState.weightPush) + "\n")
     
 
 def BFS(filePath, board, weightStone):
@@ -53,12 +61,14 @@ def BFS(filePath, board, weightStone):
             print("new pos: " + str(newStonePos))
             # print(nowState.stonePos)
             # update node visited
-            node += 1
+           
             
             # check conditions 
             if spf.checkSameBoard(newBoard, listState):
                 continue
             
+            
+            node += 1
             # get the path:
             nameDirection = spf.moveDirection(nowState.board, nextPos, curPos)  
             

@@ -4,19 +4,19 @@ import UCS
 import DFS
 
 import pygame
-# import tkinter as tk
-# import sys
+import tkinter as tk
+import sys
 # sys.path.append("../UI/Source/")
-# import home as ui
+# import Move as mov
+# import Home as ho
 
 
-inputFileName = "../Input/Input-03.txt"
+inputFileName = "../Input/Input-1.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
 
-
-def readFile():
-    with open(inputFileName, 'r') as file: 
+def readFile(inputFile):
+    with open(inputFile, 'r') as file: 
         line = file.readlines()
 
     weightStone = list(map(int, line[0].strip().split()))  # get value and assign to list
@@ -36,12 +36,18 @@ def readFile():
 
 
 def main():
-    weightStone, board = readFile()
-    bfsSate = BFS.BFS(outputFileName, board, weightStone)
+    weightStone, board = readFile(inputFileName)
+    # bfsSate = BFS.BFS(outputFileName, board, weightStone)
     # root = tk.Tk()
     # app = Sokoban(root)
     # root.mainloop() 
-    # ui.run(board)
+    
+    
+    startPos, stonePos, switchPos = spf.findPosition(board, weightStone)
+    path = "uRRRRU"
+    # mov.run(board, startPos, stonePos, switchPos ,path)
+    ho.runHome(board, startPos, stonePos, switchPos ,path)
+    
     # dfs = DFS.DFS(outputFileName, board, weightStone)
     # ucs = UCS.UCS(board, weightStone, outputFileName)
     # dfs = DFS.DFS(outputFileName, board, weightStone)

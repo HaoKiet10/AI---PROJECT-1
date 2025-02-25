@@ -1,0 +1,15 @@
+BFS
+rUL
+42
+DFS
+rUL
+50
+UCS
+rUL
+47
+Astar
+rUL
+50
+
+
+

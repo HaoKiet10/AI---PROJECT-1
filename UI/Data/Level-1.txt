@@ -1,0 +1,12 @@
+BFS
+uRRRRU
+42
+DFS
+uRRRRU
+50
+UCS
+uRRRRU
+47
+Astar
+uRRRRU
+50
