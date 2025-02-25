@@ -3,7 +3,7 @@ import time
 import tracemalloc
 
 def output(filePath, newState, time, memory):
-    with open(filePath, "w") as f:
+    with open(filePath, "a") as f:
         f.write("DFS\n")
         f.write("Steps: " + str(newState.steps) + " , Weight: " + str(newState.weightPush) + " , Node: " + str(newState.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
         f.write("Path: " + newState.path + "\n")
@@ -58,7 +58,7 @@ def DFS(filePath, board, weightStone):
             newState = spf.state(newBoard, nowState.board, nowState.path + nameDirection, nowState.weightPush + weight, node)
             
             # use to debug
-            spf.printBoard(newState.board)
+            # spf.printBoard(newState.board)
             
             # end the function
             if spf.checkWinner(newBoard, switchPos):

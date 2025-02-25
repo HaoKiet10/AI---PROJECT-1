@@ -1,14 +1,8 @@
 import supportFile as spf
 import BFS
-import UCS
 import DFS
+import UCS
 
-import pygame
-import tkinter as tk
-import sys
-# sys.path.append("../UI/Source/")
-# import Move as mov
-# import Home as ho
 
 
 inputFileName = "../Input/Input-1.txt"
@@ -36,21 +30,13 @@ def readFile(inputFile):
 
 
 def main():
-    weightStone, board = readFile(inputFileName)
-    # bfsSate = BFS.BFS(outputFileName, board, weightStone)
-    # root = tk.Tk()
-    # app = Sokoban(root)
-    # root.mainloop() 
-    
-    
-    startPos, stonePos, switchPos = spf.findPosition(board, weightStone)
-    path = "uRRRRU"
-    # mov.run(board, startPos, stonePos, switchPos ,path)
-    ho.runHome(board, startPos, stonePos, switchPos ,path)
-    
-    # dfs = DFS.DFS(outputFileName, board, weightStone)
-    # ucs = UCS.UCS(board, weightStone, outputFileName)
-    # dfs = DFS.DFS(outputFileName, board, weightStone)
 
+    weightStone, board = readFile(inputFileName)
+    bfsSate = BFS.BFS(outputFileName, board, weightStone)
+    ucs = UCS.UCS(board, weightStone, outputFileName)
+    
+
+
+    
 if __name__ == "__main__":
     main()
