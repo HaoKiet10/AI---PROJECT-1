@@ -1,36 +1,36 @@
-# – “#” for walls.
-# – “ ” (whitespace) for free spaces.
-# – “$” for stones.
-# – “@” for Ares.
-# – “.” for switch places.
-# – “*” for stones placed on switches.
-# – “+” for Ares on a switch.
-
-
 from pprint import pprint
 from queue import PriorityQueue
 import time
 import tracemalloc
 import supportFile as spf
 
-class DualPriorityQueue(PriorityQueue):
-    def __init__(self, maxPQ=False):
-        PriorityQueue.__init__(self)
-        self.reverse = -1 if maxPQ else 1
-
-    def put(self, priority, data):
-        PriorityQueue.put(self, (self.reverse * priority, data))
-
-    def get(self, *args, **kwargs):
-        priority, data = PriorityQueue.get(self, *args, **kwargs)
-        return self.reverse * priority, data
-
 def output(filePath, cur_map, time, memory):
-    traceback(cur_map)
     with open(filePath, "a") as f:
         f.write("UCS\n")
-        f.write("Steps: " + str(cur_map.steps) + " , Weight: " + str(cur_map.weightPush) + " , Node: " + str(cur_map.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
-        f.write("Path: " + cur_map.path + "\n")
+        if cur_map == None:
+            f.write("Notfound")
+        else:
+            # traceback(cur_map)  
+            f.write("Steps: " + str(cur_map.steps) + " , Weight: " + str(cur_map.weightPush) + " , Node: " + str(cur_map.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
+            f.write("Path: " + cur_map.path + "\n")
+            
+    newName = "-" + filePath.split("-")[-1]
+    filePathData = "../UI/Data/Level" + newName
+    
+    with open(filePathData, "a") as f:
+        f.write("UCS \n")
+        f.write(cur_map.path + "\n")
+        f.write(str(cur_map.weightPush) + "\n")
+    
+
+def ending(startTime, filePath, cur_map):
+    timeUsed = (time.time() - startTime) * 1000
+    timeUsed = int(timeUsed)
+    currentMemory, peakMemory = tracemalloc.get_traced_memory() 
+    tracemalloc.stop()
+    memoryUsed = round((peakMemory / (1024 * 1024)), 3)
+    output(filePath, cur_map, timeUsed, memoryUsed)
+    return cur_map
 
 def traceback(cur_map):
     if cur_map.preState == None:
@@ -52,41 +52,35 @@ def UCS(board, weightedStone, filePath):
 
 
     visited_map = []
-    list_map = DualPriorityQueue(maxPQ=True)
-    list_map.put(start_map.weightPush, start_map)
+    list_map = PriorityQueue()
+    list_map.put((start_map.weightPush + start_map.steps, start_map))
     node = 0
 
     # j = 410
     # while j > 0:
     while not list_map.empty():
-        print(node)
         node += 1
         priority, cur_map = list_map.get()
         cur_map.node = node
         visited_map.append(cur_map)
-
+        Ares = spf.findPosAres(cur_map.board)
 
         if spf.checkWinner(cur_map.board, switchList):
-            timeUsed = (time.time() - startTime) * 1000
-            timeUsed = int(timeUsed)
-            currentMemory, peakMemory = tracemalloc.get_traced_memory() 
-            tracemalloc.stop()
-            memoryUsed = round((peakMemory / (1024 * 1024)), 3)
-            output(filePath, cur_map, timeUsed, memoryUsed)
-            return cur_map
+            return ending(startTime, filePath, cur_map)
 
-        next_direction = spf.nextDirections(cur_map.board, spf.findPosAres(cur_map.board))
+        next_direction = spf.nextDirections(cur_map.board, Ares)
         for i in next_direction:
-            new_board, newStonePos = spf.move(cur_map.board, cur_map.stonePos, i, spf.findPosAres(cur_map.board), switchList)
+            new_board, newStonePos = spf.move(cur_map.board, cur_map.stonePos, i, Ares, switchList)
             if not spf.checkSameBoard(new_board, visited_map):
-                path = cur_map.path + spf.moveDirection(cur_map.board, i, spf.findPosAres(cur_map.board))
+                path = cur_map.path + spf.moveDirection(cur_map.board, i, Ares)
                 weight = cur_map.weightPush + spf.checkWeight(cur_map.board, cur_map.stonePos, i)
                 new_map = spf.state(new_board, cur_map, path, weight, node, newStonePos)
-                list_map.put(new_map.weightPush, new_map)
+                list_map.put((new_map.weightPush + new_map.steps, new_map))
 
             endTime = time.time()
             if endTime - startTime > spf.TIMEOUT:
-                return None
+                return ending(startTime, filePath, None)
+               
         # j-=1
-    print("Not found")
-    return None
+    
+    return ending(startTime, filePath, None)

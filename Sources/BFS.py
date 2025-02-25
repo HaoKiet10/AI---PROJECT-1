@@ -15,6 +15,7 @@ def output(filePath, newState, time, memory):
     filePathData = "../UI/Data/Level" + newName
     
     with open(filePathData, "w") as f:
+        f.write("BFS \n")
         f.write(newState.path + "\n")
         f.write(str(newState.weightPush) + "\n")
     

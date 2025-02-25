@@ -2,10 +2,11 @@ import supportFile as spf
 import BFS
 import DFS
 import UCS
+import AStar
 
 
 
-inputFileName = "../Input/Input-1.txt"
+inputFileName = "../Input/Input-5.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
 
@@ -33,9 +34,10 @@ def main():
 
     weightStone, board = readFile(inputFileName)
     bfsSate = BFS.BFS(outputFileName, board, weightStone)
+    dfs = DFS.DFS(outputFileName, board, weightStone)
     ucs = UCS.UCS(board, weightStone, outputFileName)
+    aStar = AStar.AStar(board, weightStone, outputFileName)
     
-
 
     
 if __name__ == "__main__":

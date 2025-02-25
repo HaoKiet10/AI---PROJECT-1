@@ -1,7 +1,4 @@
-
-
 import pygame
-
 
 def switchToHome(index, algo):
     temp = index

@@ -98,6 +98,7 @@ def readResult(filePath):
     with open(filePath, 'r') as file:
         lines = [line.strip() for line in file if line.strip()]
         
+    alo
     for i in range(0, len(lines), 3):
         algori = lines[i].strip()
         path = lines[i + 1].strip()
@@ -120,8 +121,8 @@ def drawButtonAlgorithm(screen, text):
     return buttonAlgorithm
 
 
-def drawListAlgorithm(screen):
-    algorithmList = ["BFS", "DFS", "UCS", "Astar"]
+def drawListAlgorithm(screen, algorithmList):
+    # algorithmList = ["BFS", "DFS", "UCS", "Astar"]
         
     running = True
     while running:
@@ -170,7 +171,7 @@ def runHome(index, algo):
         
         
         # get data
-        result = readResult(filePath)
+        result, algorithmList = readResult(filePath)
         path = result[algo].path
         weight = result[algo].weight
         

@@ -18,7 +18,7 @@ class state:
 
 
     def __lt__ (self, another):
-        return self.weightPush < another.weightPush
+        return self.weightPush + self.steps < another.weightPush + another.steps
     
     
 def findPosition(board, weightStone):
@@ -30,9 +30,9 @@ def findPosition(board, weightStone):
         for j in range(len(board[0])):
             if board[i][j] == "@":
                 startPos = (i, j)
-            elif board[i][j] == "$":
+            if board[i][j] == "$" or board[i][j] == "*":
                 stonePos[(i, j)] = weightStone[len(stonePos)]
-            elif board[i][j] == ".":
+            if board[i][j] == "." or board[i][j] == "*":
                 switchPos.add((i, j))
     
     return startPos, stonePos, switchPos
@@ -43,9 +43,9 @@ def findPosition(board, weightStone):
 def findPosAres(board):
     for i in range(len(board)):
         for j in range(len(board[0])):
-            if board[i][j] == "@":
+            if board[i][j] == "@" or board[i][j] == '+':
                 return (i, j)
-      
+
 def nextDirections(board, curPos):     
     x, y = curPos[0], curPos[1]
     
@@ -56,9 +56,9 @@ def nextDirections(board, curPos):
         temp = board[x - 1][y]
         if temp == ' ' or temp == '.':
             directions.append((x - 1, y))
-        elif temp == '$' and 0 <= x - 2 < len(board): # TH: Push the stone.
+        elif temp == '$' or temp == '*' and 0 <= x - 2 < len(board): # TH: Push the stone.
             nextStone = board[x - 2][y]
-            if nextStone != '#' and nextStone != '$':
+            if nextStone != '#' and nextStone != '$' and nextStone != '*':
                 directions.append((x - 1, y))
     
     
@@ -67,9 +67,9 @@ def nextDirections(board, curPos):
         temp = board[x + 1][y]
         if temp == ' ' or temp == '.':
             directions.append((x + 1, y))
-        elif temp == '$' and 0 <= x + 2 < len(board):
+        elif temp == '$' or temp == '*' and 0 <= x + 2 < len(board):
             nextStone = board[x + 2][y]
-            if nextStone != '#' and nextStone != '$':
+            if nextStone != '#' and nextStone != '$' and nextStone != '*':
                 directions.append((x + 1, y))
                 
     # LEFT: (x, y - 1)
@@ -77,9 +77,9 @@ def nextDirections(board, curPos):
         temp = board[x][y - 1]
         if temp == ' ' or temp == '.':
             directions.append((x, y - 1))
-        elif temp == '$' and 0 <= y - 2 < len(board[0]):
+        elif temp == '$' or temp == '*' and 0 <= y - 2 < len(board[0]):
             nextStone = board[x][y - 2]
-            if nextStone != '#' and nextStone != '$':
+            if nextStone != '#' and nextStone != '$' and nextStone != '*':
                 directions.append((x, y - 1))
          
     # RIGHT: (x, y + 1)
@@ -87,9 +87,9 @@ def nextDirections(board, curPos):
         temp = board[x][y + 1]
         if temp == ' ' or temp == '.':
             directions.append((x, y + 1))
-        elif temp == '$' and 0 <= y + 2 < len(board[0]):
+        elif temp == '$' or temp == '*' and 0 <= y + 2 < len(board[0]):
             nextStone = board[x][y + 2]
-            if nextStone != '#' and nextStone != '$':
+            if nextStone != '#' and nextStone != '$' and nextStone != '*':
                 directions.append((x, y + 1)) 
     
     return directions
@@ -108,7 +108,7 @@ def move(board, stonePos, nextPos, curPos, switchPos):
     newBoard = copyBoard(board)
     newStonePos = deepcopy(stonePos)
     
-    if(newBoard[nextPos[0]][nextPos[1]] == '$'):
+    if(newBoard[nextPos[0]][nextPos[1]] == '$' or newBoard[nextPos[0]][nextPos[1]] == '*'):
         x = 2 * nextPos[0] - curPos[0]
         y = 2 * nextPos[1] - curPos[1]
         
@@ -119,13 +119,20 @@ def move(board, stonePos, nextPos, curPos, switchPos):
         
         if newBoard[x][y] == '.':
             newBoard[x][y] = '*'
-        else: 
+        else:
             newBoard[x][y] = '$'
         
-        
-    newBoard[nextPos[0]][nextPos[1]] = '@'
-    newBoard[curPos[0]][curPos[1]] = ' '
+    if newBoard[nextPos[0]][nextPos[1]] == '*' or newBoard[nextPos[0]][nextPos[1]] == '.':
+        newBoard[nextPos[0]][nextPos[1]] = '+'
+    else:
+        newBoard[nextPos[0]][nextPos[1]] = '@'
     
+    if newBoard[curPos[0]][curPos[1]] == '+':
+        newBoard[curPos[0]][curPos[1]] = '.'
+    else:
+        newBoard[curPos[0]][curPos[1]] = ' '
+
+        
     for p in switchPos:
         if newBoard[p[0]][p[1]] == '*':
             continue
@@ -191,7 +198,7 @@ def moveDirection(board, nextPos, curPos):
     return moveDirection
 
 def checkWeight(board, stonePos, pos):
-    if board[pos[0]][pos[1]] == '$' or board[pos[0]][pos[1]] == '.':
+    if board[pos[0]][pos[1]] == '$' or board[pos[0]][pos[1]] == '*':
         # print("Position stone: " + str(pos[0]) + " " + str(pos[1]))
         if (pos[0], pos[1]) in stonePos:
             return stonePos[(pos[0], pos[1])]

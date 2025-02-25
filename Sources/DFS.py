@@ -8,6 +8,14 @@ def output(filePath, newState, time, memory):
         f.write("Steps: " + str(newState.steps) + " , Weight: " + str(newState.weightPush) + " , Node: " + str(newState.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
         f.write("Path: " + newState.path + "\n")
 
+    newName = "-" + filePath.split("-")[-1]
+    filePathData = "../UI/Data/Level" + newName
+    
+    with open(filePathData, "a") as f:
+        f.write("DFS \n")
+        f.write(newState.path + "\n")
+        f.write(str(newState.weightPush) + "\n")
+    
 def DFS(filePath, board, weightStone):
     startPos, stonePos, switchPos = spf.findPosition(board, weightStone)
     
@@ -20,8 +28,8 @@ def DFS(filePath, board, weightStone):
     startTime = time.time()
     tracemalloc.start()
     
-    # set the first state
-    startState = spf.state(board, None, "", 0, 0)
+    # set these first state
+    startState = spf.state(board, None, "", 0, 0, stonePos)
     stack = [startState]
     listState = [startState]
     node = 0
@@ -41,7 +49,7 @@ def DFS(filePath, board, weightStone):
             weight = spf.checkWeight(nowState.board, stonePos, nextPos)
             
             # create the new board when move
-            newBoard = spf.move(nowState.board, stonePos ,nextPos, curPos, switchPos)
+            newBoard, newStonePos = spf.move(nowState.board, stonePos ,nextPos, curPos, switchPos)
             
             
             # update node visited
@@ -55,7 +63,7 @@ def DFS(filePath, board, weightStone):
             # get the path:
             nameDirection = spf.moveDirection(nowState.board, nextPos, curPos)  
             
-            newState = spf.state(newBoard, nowState.board, nowState.path + nameDirection, nowState.weightPush + weight, node)
+            newState = spf.state(newBoard, nowState.board, nowState.path + nameDirection, nowState.weightPush + weight, node, newStonePos)
             
             # use to debug
             # spf.printBoard(newState.board)
