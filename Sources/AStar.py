@@ -38,6 +38,21 @@ def tracePath(curState : spf.state):
 	print(curState.stonePos)
 	print(curState.weightPush)
 
+def ManhattanDist(pos1, pos2):
+	return abs(pos1[0] - pos2[0]) + abs(pos1[1] - pos2[1])
+
+def buildDistTable(stonePos, switchPos):
+	costMatrix : list[list[int]] = []
+	switchPos_list = list(switchPos)
+	for x, y in stonePos.items():
+		curList = []
+		for s in switchPos_list:
+			estiDist = ManhattanDist(x, s)
+			curList.append(estiDist * y)
+		costMatrix.append(curList)
+	return costMatrix
+
+
 def AStar(board, weightStone, filePath):
 	# time, memory and node visited trackers
 	startTime = time.time()
