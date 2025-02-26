@@ -20,6 +20,14 @@ class state:
     def __lt__ (self, another):
         return self.weightPush + self.steps < another.weightPush + another.steps
     
+    def __eq__(self, another):
+        return isinstance(another, state) and (self.board == another.board) and (self.stonePos == another.stonePos) 
+    
+    def __hash__(self):
+        board_tuple = tuple(tuple(row) for row in self.board)
+        stonePos_tuple = tuple(sorted(self.stonePos.items()))
+        return hash((board_tuple, stonePos_tuple))
+    
     
 def findPosition(board, weightStone):
     startPos = None
