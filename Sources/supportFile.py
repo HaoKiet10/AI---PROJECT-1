@@ -28,7 +28,14 @@ class state:
         stonePos_tuple = tuple(sorted(self.stonePos.items()))
         return hash((board_tuple, stonePos_tuple))
     
+class AStar_state(state):
+    def __init__(self, board, preState, path, weight, node, stonePos, heuristic):
+        super().__init__(board, preState, path, weight, node, stonePos)
+        self.heuristic = heuristic
     
+    def __lt__(self, another):
+        return self.weightPush + self.steps + self.heuristic < another.weightPush + another.steps + another.heuristic
+
 def findPosition(board, weightStone):
     startPos = None
     stonePos = {}
