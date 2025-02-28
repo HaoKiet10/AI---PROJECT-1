@@ -67,6 +67,7 @@ def UCS(board, weightedStone, filePath):
 
 
         if spf.checkWinner(cur_map.board, switchList):
+<<<<<<< Updated upstream
             timeUsed = (time.time() - startTime) * 1000
             timeUsed = int(timeUsed)
             currentMemory, peakMemory = tracemalloc.get_traced_memory() 
@@ -74,6 +75,9 @@ def UCS(board, weightedStone, filePath):
             memoryUsed = round((peakMemory / (1024 * 1024)), 3)
             output(filePath, cur_map, timeUsed, memoryUsed)
             return cur_map
+=======
+            return ending(startTime, filePath, cur_map)
+>>>>>>> Stashed changes
 
         next_direction = spf.nextDirections(cur_map.board, spf.findPosAres(cur_map.board))
         for i in next_direction:
@@ -86,7 +90,13 @@ def UCS(board, weightedStone, filePath):
 
             endTime = time.time()
             if endTime - startTime > spf.TIMEOUT:
+<<<<<<< Updated upstream
                 return None
         # j-=1
     print("Not found")
     return None
+=======
+                return ending(startTime, filePath, None)
+        # j-=1
+    return ending(startTime, filePath, None)
+>>>>>>> Stashed changes
