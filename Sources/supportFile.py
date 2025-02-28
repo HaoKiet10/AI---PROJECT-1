@@ -157,26 +157,6 @@ def move(board, stonePos, nextPos, curPos, switchPos):
     
     return newBoard, newStonePos
     
-
-def compareBoard(board1, board2):
-    if not board1 or not board2:  
-        return board1 == board2
-    
-    if len(board1) != len(board2) or len(board1[0]) != len(board2[0]):
-        return False
-    for i in range(len(board1)):
-        for j in range(len(board1[0])):
-            if board1[i][j] != board2[i][j]:
-                return False
-            
-    return True
-
-def checkSameBoard(board, listState):
-    for state in listState:
-        if compareBoard(board, state.board):
-            return True
-    return False
-    
     
 def checkWinner(board, switchPos):
     if board is None:

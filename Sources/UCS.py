@@ -51,7 +51,7 @@ def UCS(board, weightedStone, filePath):
         return board
 
 
-    visited_map = []
+    visited_map : set[spf.state] = set()
     list_map = PriorityQueue()
     list_map.put((start_map.weightPush + start_map.steps, start_map))
     node = 0
@@ -62,7 +62,7 @@ def UCS(board, weightedStone, filePath):
         node += 1
         priority, cur_map = list_map.get()
         cur_map.node = node
-        visited_map.append(cur_map)
+        visited_map.add(cur_map)
         Ares = spf.findPosAres(cur_map.board)
 
         if spf.checkWinner(cur_map.board, switchList):
@@ -71,11 +71,13 @@ def UCS(board, weightedStone, filePath):
         next_direction = spf.nextDirections(cur_map.board, Ares)
         for i in next_direction:
             new_board, newStonePos = spf.move(cur_map.board, cur_map.stonePos, i, Ares, switchList)
-            if not spf.checkSameBoard(new_board, visited_map):
-                path = cur_map.path + spf.moveDirection(cur_map.board, i, Ares)
-                weight = cur_map.weightPush + spf.checkWeight(cur_map.board, cur_map.stonePos, i)
-                new_map = spf.state(new_board, cur_map, path, weight, node, newStonePos)
-                list_map.put((new_map.weightPush + new_map.steps, new_map))
+            path = cur_map.path + spf.moveDirection(cur_map.board, i, Ares)
+            weight = cur_map.weightPush + spf.checkWeight(cur_map.board, cur_map.stonePos, i)
+            new_map = spf.state(new_board, cur_map, path, weight, node, newStonePos)
+
+            if new_map in visited_map:
+                continue
+            list_map.put((new_map.weightPush + new_map.steps, new_map))
 
             endTime = time.time()
             if endTime - startTime > spf.TIMEOUT:
