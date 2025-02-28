@@ -35,6 +35,14 @@ def output(filePath, cur_map, time, memory):
             f.write("Steps: " + str(cur_map.steps) + " , Weight: " + str(cur_map.weightPush) + " , Node: " + str(cur_map.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
             f.write("Path: " + cur_map.path + "\n")
 
+    newName = "-" + filePath.split("-")[-1]
+    filePathData = "../UI/Data/Level" + newName
+    
+    with open(filePathData, "a") as f:
+        f.write("ACO \n")
+        f.write(cur_map.path + "\n")
+        f.write(str(cur_map.weightPush) + "\n")
+
 def ending(startTime, filePath, cur_map):
     timeUsed = (time.time() - startTime) * 1000
     timeUsed = int(timeUsed)
@@ -105,7 +113,7 @@ def moveAnt(startState, switchList, pheromones):
     cur_state = startState
     cur_pos = spf.findPosAres(cur_state.board)
     path = [cur_pos]
-    visitedState = []
+    visitedState : set[spf.state] = set()
     while not spf.checkWinner(cur_state.board, switchList):
         NODE_EXPAND += 1
         probabilities = []
@@ -114,11 +122,12 @@ def moveAnt(startState, switchList, pheromones):
         posible_move = spf.nextDirections(cur_state.board, cur_pos)
         for move in posible_move:
             newBoard, newStoneList = spf.move(cur_state.board, cur_state.stonePos, move, cur_pos, switchList)
-            if spf.checkSameBoard(newBoard, visitedState):
-                continue
             newWeightPush = spf.checkWeight(cur_state.board, cur_state.stonePos, move) + cur_state.weightPush
             newPath = cur_state.path + spf.moveDirection(cur_state.board, move, cur_pos)
             newState = spf.state(newBoard, cur_state, newPath, newWeightPush, NODE_EXPAND, newStoneList)
+
+            if newState in visitedState:
+                continue
             tau = pheromones[move] ** ALPHA
             eta = calculateHeuristic(newStoneList, switchList) ** BETA
             probability = tau * eta
@@ -133,7 +142,7 @@ def moveAnt(startState, switchList, pheromones):
         probabilities = np.array(probabilities) / sum(probabilities)
 
         # Choose next move based on probability
-        visitedState.append(cur_state)
+        visitedState.add(cur_state)
         cur_state = random.choices(available_move, weights=probabilities)[0]
         cur_pos = spf.findPosAres(cur_state.board)
         path.append(cur_pos)

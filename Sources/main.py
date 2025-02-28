@@ -3,6 +3,7 @@ import BFS
 import DFS
 import UCS
 import AStar
+import Swarm
 
 
 
@@ -33,11 +34,11 @@ def readFile(inputFile):
 def main():
 
     weightStone, board = readFile(inputFileName)
-    bfsSate = BFS.BFS(outputFileName, board, weightStone)
+    bfs = BFS.BFS(outputFileName, board, weightStone)
     dfs = DFS.DFS(outputFileName, board, weightStone)
     ucs = UCS.UCS(board, weightStone, outputFileName)
     aStar = AStar.AStar(board, weightStone, outputFileName)
-    
+    ACO = Swarm.ACO(outputFileName, board, weightStone)
 
     
 if __name__ == "__main__":
