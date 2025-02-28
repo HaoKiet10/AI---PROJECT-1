@@ -1,3 +1,0 @@
-Swarm
-Steps: 29 , Weight: 16 , Node: 209122 , Time (ms): 183662 , Memory (MB): 0.59
-Path: lluurRddlluruurrDulddRRRuRurD
