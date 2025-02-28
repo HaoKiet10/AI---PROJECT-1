@@ -7,7 +7,7 @@ import Swarm
 
 
 
-inputFileName = "../Input/Input-5.txt"
+inputFileName = "../Input/Input-7.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
 
@@ -34,11 +34,16 @@ def readFile(inputFile):
 def main():
 
     weightStone, board = readFile(inputFileName)
+    print("BFS running")
     bfs = BFS.BFS(outputFileName, board, weightStone)
+    print("DFS running")
     dfs = DFS.DFS(outputFileName, board, weightStone)
+    print("UCS running")
     ucs = UCS.UCS(board, weightStone, outputFileName)
+    print("A* running")
     aStar = AStar.AStar(board, weightStone, outputFileName)
-    ACO = Swarm.ACO(outputFileName, board, weightStone)
+    print("ACO running")
+    aco = Swarm.ACO(outputFileName, board, weightStone)
 
     
 if __name__ == "__main__":

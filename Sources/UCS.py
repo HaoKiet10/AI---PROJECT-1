@@ -9,6 +9,7 @@ def output(filePath, cur_map, time, memory):
         f.write("UCS\n")
         if cur_map == None:
             f.write("Notfound")
+            return
         else:
             # traceback(cur_map)  
             f.write("Steps: " + str(cur_map.steps) + " , Weight: " + str(cur_map.weightPush) + " , Node: " + str(cur_map.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")

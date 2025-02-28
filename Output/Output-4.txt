@@ -1,0 +1,15 @@
+BFS
+Steps: 15 , Weight: 596 , Node: 21905 , Time (ms): 7387 , Memory (MB): 57.72
+Path: uLulDrrRRRRRurD
+DFS
+Steps: 75 , Weight: 100 , Node: 1067 , Time (ms): 60 , Memory (MB): 0.704
+Path: rrrrrruulllllllldRdrrrrrrruullllllDRRRRRlllllldRRRRllllluurrrrrrrrDldLLLLLL
+UCS
+Steps: 23 , Weight: 404 , Node: 296224 , Time (ms): 69784 , Memory (MB): 96.612
+Path: uulDldRRRRRRRllulLLLulD
+A-Star
+Steps: 23, Weight: 404, Node: 46006, Time (ms): 104157, Memory (MB): 51.683
+Path: lluRurrDrdLLLuRRRRRRurD
+ACO
+Steps: 53 , Weight: 596 , Node: 195230 , Time (ms): 112368 , Memory (MB): 0.654
+Path: rrrrurdruuuldlulddlulDulddRRRluldluLrullDrurddrrurdRR

@@ -1,0 +1,13 @@
+BFS 
+luRRldlddrURUrUdldlluRRluR
+20
+DFS 
+lddrURlluuRRllddrrUrULddlluRRlluRR
+13
+UCS 
+luRRldlddrURUrUdldlluRRluR
+20
+Astar 
+luRRlldddrURUrUdldlluRRluR
+20
+ACO 

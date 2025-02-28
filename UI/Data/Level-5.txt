@@ -1,6 +1,15 @@
+BFS 
+rrDDDuuullldRRurD
+9
+DFS 
+rrDlulldRurrdDDuuLulldRRurD
+6
 UCS 
-rrDdDuuullldRRurD
+rrDDDuuullldRRurD
+9
+Astar 
+rrDDDuululldRRurD
 9
 ACO 
-rrDdDuuullldRRlurrD
+rrDDDuululldRRurD
 9

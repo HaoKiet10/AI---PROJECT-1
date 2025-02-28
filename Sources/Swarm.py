@@ -1,5 +1,3 @@
-
-"CAUTION EASY MAP USAGE ONLY"
 "USE FOR OPTIMIZATION"
 
 
@@ -27,9 +25,10 @@ NODE_EXPAND = 0
 
 def output(filePath, cur_map, time, memory):
     with open(filePath, "a") as f:
-        f.write("Swarm\n")
+        f.write("ACO\n")
         if cur_map == None:
             f.write("Notfound")
+            return
         else:
             traceback(cur_map)  
             f.write("Steps: " + str(cur_map.steps) + " , Weight: " + str(cur_map.weightPush) + " , Node: " + str(cur_map.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
@@ -86,7 +85,7 @@ def ACO(filePath, board, weightStone):
 
     succesState = PriorityQueue()
     for iteration in range(MAX_ITERATION):
-        print("Iteration:", iteration)
+        # print("Iteration:", iteration)
         paths = []
         for orderOfAnt in range(ANT_POPULATION):
             # print("Ant:", orderOfAnt, "moving")
@@ -97,7 +96,7 @@ def ACO(filePath, board, weightStone):
             endTime = time.time()
             if endTime - startTime > spf.TIMEOUT:
                 return ending(startTime, filePath, None)
-    print("End iteration")
+    # print("End iteration")
     if not succesState.empty():
         optimized_path = succesState.get()
     else:
@@ -149,6 +148,6 @@ def moveAnt(startState, switchList, pheromones):
         available_move.clear()
 
     """FIND THE SOLUTION"""
-    print("Found solution")
+    # print("Found solution")
     path.append((-1, -1)) 
     return path, cur_state

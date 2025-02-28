@@ -1,0 +1,15 @@
+BFS
+Steps: 3 , Weight: 2 , Node: 7 , Time (ms): 1 , Memory (MB): 0.012
+Path: ruL
+DFS
+Steps: 3 , Weight: 2 , Node: 8 , Time (ms): 0 , Memory (MB): 0.006
+Path: ruL
+UCS
+Steps: 3 , Weight: 2 , Node: 9 , Time (ms): 1 , Memory (MB): 0.016
+Path: ruL
+A-Star
+Steps: 3, Weight: 2, Node: 4, Time (ms): 10, Memory (MB): 0.127
+Path: ruL
+ACO
+Steps: 3 , Weight: 2 , Node: 2 , Time (ms): 6315 , Memory (MB): 23.114
+Path: ruL

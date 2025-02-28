@@ -1,3 +1,15 @@
-Swarm
-Steps: 19 , Weight: 9 , Node: 42731 , Time (ms): 37106 , Memory (MB): 3.582
-Path: rrDdDuuullldRRlurrD
+BFS
+Steps: 17 , Weight: 9 , Node: 214 , Time (ms): 33 , Memory (MB): 0.267
+Path: rrDDDuuullldRRurD
+DFS
+Steps: 27 , Weight: 6 , Node: 168 , Time (ms): 10 , Memory (MB): 0.128
+Path: rrDlulldRurrdDDuuLulldRRurD
+UCS
+Steps: 17 , Weight: 9 , Node: 242 , Time (ms): 38 , Memory (MB): 0.308
+Path: rrDDDuuullldRRurD
+A-Star
+Steps: 17, Weight: 9, Node: 138, Time (ms): 264, Memory (MB): 0.558
+Path: rrDDDuululldRRurD
+ACO
+Steps: 17 , Weight: 9 , Node: 25348 , Time (ms): 37047 , Memory (MB): 3.859
+Path: rrDDDuululldRRurD
