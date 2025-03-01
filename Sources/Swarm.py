@@ -63,7 +63,7 @@ def calculateHeuristic(stoneList, switchList):
     heuristic_value = 0
     stoneCoordinate = list(stoneList.keys())
     switchCoordinate = list(switchList)
-    for i in range(len(stoneList)):
+    for i in range(len(stoneCoordinate)):
         heuristic_value += 1 / (1 + np.linalg.norm(np.array(stoneCoordinate[i]) - np.array(switchCoordinate[i]), ord = 1))
     return heuristic_value
 
