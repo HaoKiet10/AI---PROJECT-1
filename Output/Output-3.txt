@@ -1,4 +1,5 @@
 BFS
+<<<<<<< Updated upstream
 Steps: 17 , Weight: 48 , Node: 17128 , Time (ms): 5504 , Memory (MB): 48.598
 Path: rrrrdLLLLulldLdlU
 DFS
@@ -13,3 +14,12 @@ Path: rrrrdLLLLdlluLdlU
 ACO
 Steps: 55 , Weight: 48 , Node: 333568 , Time (ms): 112423 , Memory (MB): 0.44
 Path: rdldrrrrruuldLLdllulldlUrdruulLdldrruurddrrrrrrulluldLL
+=======
+Steps: 17 , Weight: 48 , Node: 3209 , Time (ms): 27322 , Memory (MB): 4.817
+Path: rrrrdLLLLulldLdlU
+DFS
+Steps: 293 , Weight: 61 , Node: 29941 , Time (ms): 418540 , Memory (MB): 16.792
+Path: rrrrrddllllllllluRRrRRdrrUruLrrddllllllllluurrrrrRRlldRRdrruLruLrddllluRdrruulLLrrrdLLLLruLrrrrddllllllllluurrrRRRRlllllllddrrrrrrrrruuLrddlllluLrrrruLrrddlllllulrrrruLrrrddlllllllluRrRRRuLrrrdLLdlluRuLrrrdLLLlruLrrrrrrddllllllllluurRRdLrrruLrrrrrddllllllllluRRrRuLrrrdLLdlluruLrrrdLlLdlluRRuL
+UCS
+Notfound
+>>>>>>> Stashed changes

@@ -15,11 +15,12 @@ SIZE = 50
 
 
 width = 1000
-height = 700
+height = 800
 
 imageLeft = pygame.transform.scale(pygame.image.load("../Assets/left.png"), (SIZE, SIZE))
 imageRight = pygame.transform.scale(pygame.image.load("../Assets/right.png"), (SIZE, SIZE))
-imagePlay = pygame.transform.scale(pygame.image.load("../Assets/buttonPlay.png"), (100, 60))
+imagePlay = pygame.transform.scale(pygame.image.load("../Assets/start.png"), (120, 100))
+background = pygame.transform.scale(pygame.image.load("../Assets/background.png"), (width, height))
 
 def readFile(inputFile):
     with open(inputFile, 'r') as file: 
@@ -56,33 +57,33 @@ def findPosition(board, weightStone):
 
 
 def drawText(screen, text, size):
-    pygame.draw.rect(screen, (111, 187, 227, 255), (410, 180, 170, 60))
+    pygame.draw.rect(screen, (111, 187, 227, 255), (410, 140, 170, 60))
     # font = pygame.font.Font("comic sans ms", size)
     font = pygame.font.SysFont("comic sans ms", size)
     label = font.render(text, True, TEXT_COLOR)
-    screen.blit(label, (420, 180))
+    screen.blit(label, (425, 140))
     
 def drawTitle(screen):
-    pygame.draw.rect(screen, (237, 232, 220, 255), (0, 0, 1000, 150 ))
+    pygame.draw.rect(screen, (237, 232, 220, 255), (0, 0, 1000, 50 ))
     font = pygame.font.Font(None, 70)
     title = font.render("SOKOBAN GAME", True, TEXT_COLOR)
     screen.blit(title, (300, 70))
 
 def buttonChoice(screen):
-    buttonLeft = pygame.Rect(350, 180, 60, 60)
-    pygame.draw.rect(screen, BUTTON_COLOR, buttonLeft)
-    screen.blit(imageLeft, (355, 185))
-    buttonRight = pygame.Rect(580, 180, 60, 60)
-    pygame.draw.rect(screen, BUTTON_COLOR, buttonRight)
-    screen.blit(imageRight, (585, 185))
+    buttonLeft = pygame.Rect(350, 140, 60, 60)
+    # pygame.draw.rect(screen, BUTTON_COLOR, buttonLeft)
+    screen.blit(imageLeft, (355, 145))
+    buttonRight = pygame.Rect(580, 140, 60, 60)
+    # pygame.draw.rect(screen, BUTTON_COLOR, buttonRight)
+    screen.blit(imageRight, (585, 145))
     
     return buttonLeft, buttonRight
 
 
-def drawButtonPlay(screen):
-    buttonPlay = pygame.Rect(450, 620, 50, 60)
-    pygame.draw.rect(screen, (255, 255, 255), buttonPlay)
-    screen.blit(imagePlay, (450, 620))
+def drawButtonPlay(screen, board):
+    buttonPlay = pygame.Rect(450, len(board) * 50 + 300, 120, 100)
+    # pygame.draw.rect(screen, (255, 255, 255), buttonPlay)
+    screen.blit(imagePlay, (450, len(board) * 50 + 300))
     
     return buttonPlay
 
@@ -91,32 +92,43 @@ class algorithm:
         self.algorithm = algorithm
         self.path = path 
         self.weight = weight
-
+';./'
 # get the data for UI
 def readResult(filePath):
     result = {}
+    algorithmList = []
     with open(filePath, 'r') as file:
         lines = [line.strip() for line in file if line.strip()]
         
-    alo
+        
+    
     for i in range(0, len(lines), 3):
         algori = lines[i].strip()
         path = lines[i + 1].strip()
         weight = int(lines[i + 2].strip())
+        algorithmList.append(algori.lower())
         result[algori.lower()] = algorithm(algori, path, weight)
         
-    return result 
+    return result , algorithmList
 
 def drawButtonAlgorithm(screen, text):
     
-    
+    text = text.lower()
+    dir = {"bfs" : "Breadth First Search", 
+           "dfs" : "Depth First Search", 
+           "ucs" : "Uniform Cost Search", 
+           "astar" : "A Star",
+           "aco" : "Swarm Intelligence"
+    }
+    # print("text: " + str(text))
     font = pygame.font.SysFont("comic sans ms", 25)
-    widText, heiText = font.size(text)
-    buttonAlgorithm = pygame.Rect(width/2 - widText/2 , 250, widText, heiText + 10)
+    temp = dir.get(text, "Select the algorithm")
+    widText, heiText = font.size(temp)
+    buttonAlgorithm = pygame.Rect(width/2 - widText/2 , 220, widText, heiText + 10)
     pygame.draw.rect(screen, (111, 187, 227, 255), buttonAlgorithm)
     
-    label = font.render(text, True, TEXT_COLOR)
-    screen.blit(label, (width/2 - widText/2 , 250))
+    label = font.render(temp, True, TEXT_COLOR)
+    screen.blit(label, (width/2 - widText/2 , 220))
     
     return buttonAlgorithm
 
@@ -125,23 +137,27 @@ def drawListAlgorithm(screen, algorithmList):
     # algorithmList = ["BFS", "DFS", "UCS", "Astar"]
         
     running = True
+    for  i in range(len(algorithmList)):
+        algorithmList[i] = algorithmList[i].upper()
     while running:
         for i, algo in enumerate(algorithmList):  
-            algoButton  = pygame.Rect(width // 2 - 100, height // 2 + i * 40, 200, 40)
+            algoButton  = pygame.Rect(width // 2 - 100, height // 2 + i * 40 - 100, 200, 40)
             pygame.draw.rect(screen, (180, 180, 180), algoButton)
             font = pygame.font.SysFont("comic sans ms", 25)
             text = font.render(algo, True, (255, 255, 255))
-            screen.blit(text, (width // 2 - 100 + 5 , height // 2 + i * 40 + 5, 195, 35))
+            screen.blit(text, (width // 2 - 100 + 5 , height // 2 + i * 40 + 5 - 100, 195, 35))
         
             pygame.display.flip()
             
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for i, algo in enumerate(algorithmList):
-                        algoButton = pygame.Rect(width // 2 - 100, height // 2 + i * 40, 200, 40)
+                        algoButton = pygame.Rect(width // 2 - 100, height // 2 + i * 40 - 100, 200, 40)
                         if algoButton.collidepoint(event.pos):
                                 return algoButton, algo
-                        
+       
+def extractLevelNumber(filename):
+    return int(filename.split('-')[1])               
 
 def runHome(index, algo):
     pygame.init()
@@ -152,15 +168,18 @@ def runHome(index, algo):
     
     #  the list reversed
     folderPath = "../Data"
-    fileList = [f[:-4] for f in os.listdir(folderPath) if f.endswith(".txt")]
+    fileList = sorted([f[:-4] for f in os.listdir(folderPath) if f.endswith(".txt")],key=extractLevelNumber)
     filePath = folderPath + "/" + fileList[index] + ".txt"
+    print(fileList)
+    
     running = True
     #  print(fileList)
     text = algo
     algo = "bfs"
     
     while running:
-        screen.fill(BG_COLOR)
+        # screen.fill(BG_COLOR)
+        screen.blit(background, (0, 0))
         
         # get origin data 
         temp = fileList[index].replace("Level", "Input")
@@ -172,12 +191,17 @@ def runHome(index, algo):
         
         # get data
         result, algorithmList = readResult(filePath)
+        # print(algorithmList)
+        # print(result.)
+        # print(algorithmList)
         path = result[algo].path
         weight = result[algo].weight
+        # algo.upper()
         
         # get level and delete .txt
-        fileList = [f[:-4] for f in os.listdir(folderPath) if f.endswith(".txt")]
+        fileList = sorted([f[:-4] for f in os.listdir(folderPath) if f.endswith(".txt")],key=extractLevelNumber)
         # draw name of level
+        
         drawText(screen, fileList[index], 40)    
         # print(fileList[index])  
         
@@ -185,14 +209,15 @@ def runHome(index, algo):
         drawTitle(screen)
         
         #draw board
-        drawBoard(screen, board, width/2 - (len(board[0]) * 50 / 2 - 10), 265)
+        drawBoard(screen, board, width/2 - (len(board[0]) * 50 / 2 - 10), 235)
         
         # button
         buttonLeft, buttonRight = buttonChoice(screen)
         
         # draw button play
-        buttonPlay = drawButtonPlay(screen)
-        
+        buttonPlay = drawButtonPlay(screen, board)
+       
+        # text.upper()
         buttonAlgorithm = drawButtonAlgorithm(screen, text)
         
         
@@ -216,10 +241,11 @@ def runHome(index, algo):
                         switchToMove(screen, board, startPos, stonePos, switchPos ,path, weight, index, algo) 
                            
                 if buttonAlgorithm.collidepoint(event.pos):
-                    algoButton, algo = drawListAlgorithm(screen)
+                    algoButton, algo = drawListAlgorithm(screen, algorithmList)
                     text = algo
                     algo = algo.lower()
-                    print(algo)
+                    print("Choice: " + str(algo))
+                    
 
         # print("index " + str(index))
         

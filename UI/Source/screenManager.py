@@ -8,5 +8,5 @@ def switchToHome(index, algo):
 def switchToMove(screen, board, startPos, stonePos, switchPos, path, weight, index, algo):
     from Move import run
     temp = index
-    run(screen, board, startPos, stonePos, switchPos ,path, weight, temp, algo)
+    run(screen, board, startPos, stonePos, switchPos ,path, temp, algo)
     
