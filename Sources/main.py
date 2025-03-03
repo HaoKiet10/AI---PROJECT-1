@@ -8,7 +8,7 @@ import Swarm
 
 
 
-inputFileName = "../Input/Input-1.txt"
+inputFileName = "../Input/Input-10.txt"
 outputFileName = inputFileName.replace("Input", "Output")
 
 

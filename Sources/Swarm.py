@@ -30,7 +30,7 @@ def output(filePath, cur_map, time, memory):
             f.write("Notfound")
             return
         else:
-            traceback(cur_map)  
+            # traceback(cur_map)  
             f.write("Steps: " + str(cur_map.steps) + " , Weight: " + str(cur_map.weightPush) + " , Node: " + str(cur_map.node) + " , Time (ms): " + str(time) + " , Memory (MB): " + str(memory) + "\n")
             f.write("Path: " + cur_map.path + "\n")
 
@@ -63,7 +63,7 @@ def calculateHeuristic(stoneList, switchList):
     heuristic_value = 0
     stoneCoordinate = list(stoneList.keys())
     switchCoordinate = list(switchList)
-    for i in range(len(stoneList)):
+    for i in range(len(stoneCoordinate)):
         heuristic_value += 1 / (1 + np.linalg.norm(np.array(stoneCoordinate[i]) - np.array(switchCoordinate[i]), ord = 1))
     return heuristic_value
 

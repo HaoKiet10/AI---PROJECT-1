@@ -44,7 +44,7 @@ def DFS(filePath, board, weightStone):
     # set these first state
     startState = spf.state(board, None, "", 0, 0, stonePos)
     stack = [startState]
-    listState : set[spf.state] = set()
+    listState : set[startState] = set()
     node = 0
     weight = 0
     
@@ -59,10 +59,10 @@ def DFS(filePath, board, weightStone):
         for nextPos in directions:
             
             # get weight stone 
-            weight = spf.checkWeight(nowState.board, stonePos, nextPos)
+            weight = spf.checkWeight(nowState.board, nowState.stonePos, nextPos)
             
             # create the new board when move
-            newBoard, newStonePos = spf.move(nowState.board, stonePos ,nextPos, curPos, switchPos)
+            newBoard, newStonePos = spf.move(nowState.board, nowState.stonePos ,nextPos, curPos, switchPos)
             
             
             # update node visited

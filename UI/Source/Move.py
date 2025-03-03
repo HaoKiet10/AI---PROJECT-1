@@ -129,6 +129,7 @@ def run(screen, board, startPos, stonePos, switchPos,path, curLevel, algo):
     
     # save to reset
     originPos = startPos
+    originStone = deepcopy(stonePos)
     originBoard = deepcopy(board)
 
     running = True
@@ -161,23 +162,25 @@ def run(screen, board, startPos, stonePos, switchPos,path, curLevel, algo):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     paused = False 
-                if event.key == pygame.K_r:
+                elif event.key == pygame.K_r:
                     index = 0
                     steps = 0
+                    weight = 0
                     paused = False
                     startPos = originPos
+                    stonePos = deepcopy(originStone)
                     board = deepcopy(originBoard)
                     # drawScore(screen, board, font, level, weight, steps)
                     # drawBoard(screen, board)
                     # pygame.display.flip()
                     
-                if event.key == pygame.K_s:
+                elif event.key == pygame.K_s:
                     paused = True
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if buttonReturn.collidepoint(event.pos):
                     screen.fill((255, 255, 255))
                     switchToHome(curLevel, algo)
-                    
+            
                     
         
         
@@ -190,12 +193,13 @@ def run(screen, board, startPos, stonePos, switchPos,path, curLevel, algo):
              
             board[startPos[0]][startPos[1]] = ' '
             startPos, nextStone, oldStone, weightPush = move(startPos, stonePos, dir)
+            print(weightPush)
             # print("Position of stone: " + str(stonePos))
-            weight += weightPush
+           
             
-            print("vi tri da cu " + str(oldStone))
-            print("vi tri da moi " + str(nextStone))
-            print("vi tri ares: " + str(startPos))
+            # print("vi tri da cu " + str(oldStone))
+            # print("vi tri da moi " + str(nextStone))
+            # print("vi tri ares: " + str(startPos))
         
             
             if board[oldStone[0]][oldStone[1]] == '$':
@@ -211,6 +215,8 @@ def run(screen, board, startPos, stonePos, switchPos,path, curLevel, algo):
             for i in switchPos:
                 if board[i[0]][i[1]] == '$':
                     board[i[0]][i[1]] = '*'
+                elif board[i[0]][i[1]] == '@':
+                    continue
                 elif board[i[0]][i[1]] != '*':
                     board[i[0]][i[1]] = '.'
                 
@@ -224,6 +230,8 @@ def run(screen, board, startPos, stonePos, switchPos,path, curLevel, algo):
             
             index += 1
             steps += 1
+            weight += weightPush
+            
             screen.blit(background, (0, 0))
              
             drawScore(screen, board, font, level, weight, steps)

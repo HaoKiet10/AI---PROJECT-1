@@ -3,11 +3,10 @@ luRRldlddrURUrUdldlluRRluR
 20
 DFS 
 lddrURlluuRRllddrrUrULddlluRRlluRR
-13
+24
 UCS 
 luRRldlddrURUrUdldlluRRluR
 20
 Astar 
 luRRlldddrURUrUdldlluRRluR
 20
-ACO

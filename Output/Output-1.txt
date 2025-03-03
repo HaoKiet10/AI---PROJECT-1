@@ -1,15 +1,12 @@
 BFS
-Steps: 6 , Weight: 42 , Node: 88 , Time (ms): 22 , Memory (MB): 0.43
+Steps: 6 , Weight: 42 , Node: 88 , Time (ms): 50 , Memory (MB): 0.435
 Path: uRRRRU
 DFS
-Steps: 206 , Weight: 18 , Node: 46931 , Time (ms): 1819 , Memory (MB): 29.774
-Path: rrrrrrruullLrrrddllllllluRRRRRluurrrddLruullllDrrrrddllllluRdrrUrruullllddRRlluurrrrddLuLrrddlllluuRRllddrrruLrruulllldddrUrrruLrddllluURllddrrrruuLLrrddlllluuuRRlldRRllddrrrruuLruLrddlllluurRDllddrrrruuuLL
+Steps: 226 , Weight: 250 , Node: 88800 , Time (ms): 3383 , Memory (MB): 58.889
+Path: rrrrrrruullLrrrddllllllluRRRRRluurrrddLruullllDrrrrddllllluRdrrUrruullllddRRlluurrrrddLuLrrddlllluuurDrrrddllUrruullllddRRlluurrrrddLuLrrddllUlURllddrrrruuLLrrddlllluuuRRlldRRllddrrrruuLruLrddlllluurRDrrddllluRdrruuuLrddLruulL
 UCS
-Steps: 6 , Weight: 42 , Node: 94337 , Time (ms): 12461 , Memory (MB): 56.369
+Steps: 6 , Weight: 42 , Node: 94337 , Time (ms): 12251 , Memory (MB): 56.299
 Path: uRRRRU
 A-Star
-Steps: 6, Weight: 42, Node: 11993, Time (ms): 12812, Memory (MB): 17.88
-Path: uRRRRU
-ACO
-Steps: 6 , Weight: 42 , Node: 9958 , Time (ms): 37811 , Memory (MB): 0.819
+Steps: 6, Weight: 42, Node: 11993, Time (ms): 13064, Memory (MB): 17.926
 Path: uRRRRU

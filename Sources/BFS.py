@@ -49,7 +49,7 @@ def BFS(filePath, board, weightStone):
     
     startState = spf.state(board, None, "", 0, 0, stonePos)
     listState = [startState]
-    listVisited : set[spf.state]= set()
+    listVisited : set[startState]= set()
     node = 0
     weight = 0
     
@@ -76,8 +76,8 @@ def BFS(filePath, board, weightStone):
             newState = spf.state(newBoard, nowState, nowState.path + nameDirection, nowState.weightPush + weight, node, newStonePos)
             if newState in listVisited:
                 continue
-            """use to debug
-            spf.printBoard(newState.board, newState.stonePos)"""
+            # use to debug
+            spf.printBoard(newState.board, newState.stonePos)
             
             # end the function
             if spf.checkWinner(nowState.board, switchPos):
@@ -87,9 +87,8 @@ def BFS(filePath, board, weightStone):
             
             endTime = time.time()
             if endTime - startTime > spf.TIMEOUT:
-                # print("Not enought time")
+                print("Not enought time")
                 return ending(startTime, filePath, nowState)
             
             
-    # print("Not found")
     return ending(startTime, filePath, nowState)

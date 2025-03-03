@@ -1,25 +1,15 @@
 BFS
-<<<<<<< Updated upstream
-Steps: 17 , Weight: 48 , Node: 17128 , Time (ms): 5504 , Memory (MB): 48.598
+Steps: 17 , Weight: 48 , Node: 17128 , Time (ms): 3242 , Memory (MB): 51.149
 Path: rrrrdLLLLulldLdlU
 DFS
-Steps: 339 , Weight: 83 , Node: 30543 , Time (ms): 1615 , Memory (MB): 16.922
-Path: rrrrrddllllllllluRRRRRdrrUruLrrddllllllllluurrrrrRRlldRRdrruLruLrddllluRdrruulLrrdLLLruLrrrddllllllllluurrrrRRRldLrrrruLrddlllluLrrrruLrrddllllluLrrrruLrrrddlllllllluRRdrrrrrruulllLrrrrddlllllluRRRRlllluRllllddrrrrrrrrruLLdlluRuLLrrrrdLLLLLruLrrrrrrddllllllllluurRRdLrrruLrrrrrddllllllllluRRRRRluLrrrrdLLLdlluRRluLrrrrdLLLLdlluRRRluLrrrrdL
+Steps: 293 , Weight: 344 , Node: 54849 , Time (ms): 2015 , Memory (MB): 31.599
+Path: rrrrrddllllllllluRRRRRdrrUruLrrddllllllllluurrrrrRRlldRRdrruLruLrddllluRdrruulLLrrrdLLLLruLrrrrddllllllllluurrrRRRRlllllllddrrrrrrrrruuLrddlllluLrrrruLrrddllllluLrrrruLrrrddlllllllluRRRRRuLrrrdLLdlluRuLrrrdLLLLruLrrrrrrddllllllllluurRRdLrrruLrrrrrddllllllllluRRRRuLrrrdLLdlluRuLrrrdLLLdlluRRuL
 UCS
-Steps: 17 , Weight: 48 , Node: 207338 , Time (ms): 43587 , Memory (MB): 68.639
+Steps: 17 , Weight: 48 , Node: 207338 , Time (ms): 27758 , Memory (MB): 72.16
 Path: rrrrdLLLLulldLdlU
 A-Star
-Steps: 17, Weight: 48, Node: 14896, Time (ms): 31203, Memory (MB): 17.331
+Steps: 17, Weight: 48, Node: 14896, Time (ms): 16684, Memory (MB): 18.049
 Path: rrrrdLLLLdlluLdlU
 ACO
-Steps: 55 , Weight: 48 , Node: 333568 , Time (ms): 112423 , Memory (MB): 0.44
-Path: rdldrrrrruuldLLdllulldlUrdruulLdldrruurddrrrrrrulluldLL
-=======
-Steps: 17 , Weight: 48 , Node: 3209 , Time (ms): 27322 , Memory (MB): 4.817
-Path: rrrrdLLLLulldLdlU
-DFS
-Steps: 293 , Weight: 61 , Node: 29941 , Time (ms): 418540 , Memory (MB): 16.792
-Path: rrrrrddllllllllluRRrRRdrrUruLrrddllllllllluurrrrrRRlldRRdrruLruLrddllluRdrruulLLrrrdLLLLruLrrrrddllllllllluurrrRRRRlllllllddrrrrrrrrruuLrddlllluLrrrruLrrddlllllulrrrruLrrrddlllllllluRrRRRuLrrrdLLdlluRuLrrrdLLLlruLrrrrrrddllllllllluurRRdLrrruLrrrrrddllllllllluRRrRuLrrrdLLdlluruLrrrdLlLdlluRRuL
-UCS
-Notfound
->>>>>>> Stashed changes
+Steps: 37 , Weight: 48 , Node: 11591 , Time (ms): 61632 , Memory (MB): 0.731
+Path: rrdllllLurrrdldrrrulurrrdLLLLulldldlU

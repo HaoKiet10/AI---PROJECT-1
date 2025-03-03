@@ -3,7 +3,7 @@ uLulDrrRRRRRurD
 596
 DFS 
 rrrrrruulllllllldRdrrrrrrruullllllDRRRRRlllllldRRRRllllluurrrrrrrrDldLLLLLL
-100
+606
 UCS 
 uulDldRRRRRRRllulLLLulD
 404
@@ -11,5 +11,5 @@ Astar
 lluRurrDrdLLLuRRRRRRurD
 404
 ACO 
-rrrrurdruuuldlulddlulDulddRRRluldluLrullDrurddrrurdRR
-596
+rUlLrullDurddrurruulldRRRRurDDululddrdR
+794

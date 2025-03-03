@@ -1,0 +1,14 @@
+BFS
+Steps: 28 , Weight: 18 , Node: 18742 , Time (ms): 5055 , Memory (MB): 25.543
+Path: dddrrRRRRRRdrrUUUdddlluRdrUU
+DFS
+Steps: 46 , Weight: 28 , Node: 731 , Time (ms): 34 , Memory (MB): 0.656
+Path: rdddrRRRRRRdrrULrUdlLrruUddllLLLulldRRRRRRdrUU
+UCS
+Steps: 28 , Weight: 18 , Node: 40825 , Time (ms): 5061 , Memory (MB): 22.672
+Path: ddrdrRRRRRRdrrUUUdddlluRdrUU
+A-Star
+Steps: 28, Weight: 18, Node: 2240, Time (ms): 2439, Memory (MB): 4.081
+Path: dddrrRRRRRRdrrUUUdddlluRdrUU
+ACO
+Notfound

@@ -1,0 +1,15 @@
+BFS
+Steps: 17 , Weight: 36 , Node: 67563 , Time (ms): 14808 , Memory (MB): 160.387
+Path: uRdldRRRdrruLLruL
+DFS
+Steps: 278 , Weight: 320 , Node: 953556 , Time (ms): 43712 , Memory (MB): 621.652
+Path: rrRllldRRRllluuRRRlllddrrrdrruLLLruulllddRRlluurrrurrdLLdlluRllddrrRdrruLLLulldRluurrRurrdLLrDllluRRddLrdrruLLulllddrURRllluRRRddrruLLLruulllddRRlluurrrurrdLLLdlluRRllddrrRdrruLLLulldRluurrRurrdLLrDllluRRddLrdrruLLulllddrURRllluRRdrdrruLLruLLrdLruullldRRlldRRlluurrrurrdLLrdLrdL
+UCS
+Steps: 20 , Weight: 16 , Node: 89076 , Time (ms): 13909 , Memory (MB): 102.42
+Path: uurDrrrdLulllddRUluR
+A-Star
+Steps: 20, Weight: 16, Node: 22987, Time (ms): 67569, Memory (MB): 48.11
+Path: uurDrrrdLulllddRUluR
+ACO
+Steps: 32 , Weight: 22 , Node: 85130 , Time (ms): 42164 , Memory (MB): 0.536
+Path: ddrUluRluRuldddrrrruurulldDurddL

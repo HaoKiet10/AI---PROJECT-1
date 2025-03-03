@@ -222,7 +222,7 @@ def checkWeight(board, stonePos, pos):
 
 def printBoard(board, stonePos):
     
-    with open('output.txt', 'a') as f: 
+    with open('output.txt', 'w') as f: 
         f.write("-----------------\n")
         for row in board:
             f.write("\t".join(map(str, row)) + "\n")

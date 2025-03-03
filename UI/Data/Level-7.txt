@@ -1,0 +1,15 @@
+BFS 
+uRdldRRRdrruLLruL
+36
+DFS 
+rrRllldRRRllluuRRRlllddrrrdrruLLLruulllddRRlluurrrurrdLLdlluRllddrrRdrruLLLulldRluurrRurrdLLrDllluRRddLrdrruLLulllddrURRllluRRRddrruLLLruulllddRRlluurrrurrdLLLdlluRRllddrrRdrruLLLulldRluurrRurrdLLrDllluRRddLrdrruLLulllddrURRllluRRdrdrruLLruLLrdLruullldRRlldRRlluurrrurrdLLrdLrdL
+320
+UCS 
+uurDrrrdLulllddRUluR
+16
+Astar 
+uurDrrrdLulllddRUluR
+16
+ACO 
+ddrUluRluRuldddrrrruurulldDurddL
+22

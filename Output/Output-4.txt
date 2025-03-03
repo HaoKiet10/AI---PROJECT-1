@@ -1,25 +1,15 @@
 BFS
-<<<<<<< Updated upstream
-Steps: 15 , Weight: 596 , Node: 21905 , Time (ms): 7387 , Memory (MB): 57.72
+Steps: 15 , Weight: 596 , Node: 21905 , Time (ms): 4414 , Memory (MB): 60.315
 Path: uLulDrrRRRRRurD
 DFS
-Steps: 75 , Weight: 100 , Node: 1067 , Time (ms): 60 , Memory (MB): 0.704
+Steps: 75 , Weight: 606 , Node: 1064 , Time (ms): 39 , Memory (MB): 0.73
 Path: rrrrrruulllllllldRdrrrrrrruullllllDRRRRRlllllldRRRRllllluurrrrrrrrDldLLLLLL
 UCS
-Steps: 23 , Weight: 404 , Node: 296224 , Time (ms): 69784 , Memory (MB): 96.612
+Steps: 23 , Weight: 404 , Node: 296224 , Time (ms): 44197 , Memory (MB): 100.68
 Path: uulDldRRRRRRRllulLLLulD
 A-Star
-Steps: 23, Weight: 404, Node: 46006, Time (ms): 104157, Memory (MB): 51.683
+Steps: 23, Weight: 404, Node: 46006, Time (ms): 54520, Memory (MB): 54.192
 Path: lluRurrDrdLLLuRRRRRRurD
 ACO
-Steps: 53 , Weight: 596 , Node: 195230 , Time (ms): 112368 , Memory (MB): 0.654
-Path: rrrrurdruuuldlulddlulDulddRRRluldluLrullDrurddrrurdRR
-=======
-Steps: 15 , Weight: 596 , Node: 7505 , Time (ms): 183913 , Memory (MB): 12.639
-Path: uLulDrrRRRRRurD
-DFS
-Steps: 75 , Weight: 100 , Node: 1064 , Time (ms): 914 , Memory (MB): 0.692
-Path: rrrrrruulllllllldRdrrrrrrruullllllDRRRRRlllllldRRRRllllluurrrrrrrrDldLLLLLL
-UCS
-Notfound
->>>>>>> Stashed changes
+Steps: 39 , Weight: 794 , Node: 235035 , Time (ms): 59003 , Memory (MB): 0.667
+Path: rUlLrullDurddrurruulldRRRRurDDululddrdR

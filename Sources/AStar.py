@@ -15,7 +15,7 @@ import networkx
 
 # function to output results to an specified output file. Values include number of steps, weight pushed, number of nodes (states) visited, time, memory cost and the shortest path. 
 def output(finalState: spf.AStar_state, time, memory, filePath):
-	tracePath(finalState)
+	# tracePath(finalState)
 	with open(filePath, "a") as file:
 		file.write("A-Star\n")
 		file.write("Steps: " + str(finalState.steps) + ", Weight: " + str(finalState.weightPush) + ", Node: " + str(finalState.node) + ", Time (ms): " + str(time) + ", Memory (MB): " + str(memory) + "\n")

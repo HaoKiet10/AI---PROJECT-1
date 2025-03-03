@@ -1,0 +1,12 @@
+BFS 
+ddddRRRRluRRuullluRR
+26
+DFS 
+rrRRlllllddrddRRRRllllluuruurrrrdrrdddLruuuuLrddllullulllddrrddrrRllllluuruurrrdrrrdddLLrruulluluRdrruLLrrddlddlLrrruullulluRRdrrddldllLrrrruuuuLrddlddlllLrrrrruulluluRdrrddldlluRRlldllulldRRRRR
+98
+UCS 
+ddddRRRRluRRululluRR
+26
+Astar 
+ddddRRRRluRRululluRR
+26
